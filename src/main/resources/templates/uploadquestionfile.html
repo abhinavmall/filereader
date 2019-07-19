@@ -34,6 +34,7 @@
             <div th:if="${#fields.hasErrors('file')}"
                  th:errors="*{file}"
                  th:errorclass="text-danger"/>
+            <br/>
             <button type="submit" class="btn btn-primary" onclick="this.submit();">Submit</button>
         </form>
     </div>

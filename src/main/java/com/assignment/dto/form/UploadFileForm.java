@@ -8,7 +8,7 @@ public class UploadFileForm {
     private MultipartFile file;
 
     @AssertTrue(message = "File must be provided")
-    public boolean isFileProvided() {
+    public boolean isFile() {
         return (file != null) && (! file.isEmpty());
     }
 
