@@ -1,0 +1,50 @@
+<html xmlns:th="http://www.thymeleaf.org">
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Question Paper Assignment</title>
+    <script src='/webjars/jquery/jquery.min.js'></script>
+    <link rel='stylesheet' href='/webjars/bootstrap/css/bootstrap.min.css'>
+    <script src='/webjars/bootstrap/js/bootstrap.min.js'></script>
+</head>
+<body>
+<div class="container-fluid">
+    <h1 class="display-4">QUESTION FILE UPLOAD</h1>
+    <div th:if="${null != success}" class="alert alert-success text-center">
+        <span th:text="${success}"/>
+    </div>
+    <div th:if="${null != failure}" class="alert alert-danger text-center">
+        <span th:text="${failure}"/>
+    </div>
+    <div>
+        <form method="POST" enctype="multipart/form-data" action="#"
+              th:action="@{/uploadquestionfile}" th:object="${uploadFileForm}">
+            <div class="input-group mb-3">
+                <div class="input-group-prepend">
+                    <span class="input-group-text">Upload Question File</span>
+                </div>
+                <div class="custom-file">
+                    <input type="file" class="custom-file-input"
+                           th:field="*{file}"
+                           th:errorclass="is-invalid"
+                           accept="text/plain">
+                    <label class="custom-file-label" th:for="*{file}">Choose file</label>
+                </div>
+            </div>
+            <div th:if="${#fields.hasErrors('file')}"
+                 th:errors="*{file}"
+                 th:errorclass="text-danger"/>
+            <button type="submit" class="btn btn-primary" onclick="this.submit();">Submit</button>
+        </form>
+    </div>
+</div>
+<script>
+    $('#file').on('change',function(){
+        //get the file name
+        var fileName = $(this).val();
+        //replace the "Choose a file" label
+        $(this).next('.custom-file-label').html(fileName);
+    })
+</script>
+</body>
+</html>
