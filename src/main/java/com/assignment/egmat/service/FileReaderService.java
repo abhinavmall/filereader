@@ -1,4 +1,4 @@
-package com.assignment.service;
+package com.assignment.egmat.service;
 
 import java.io.File;
 import java.util.List;

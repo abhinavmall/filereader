@@ -1,4 +1,4 @@
-package com.assignment.util;
+package com.assignment.egmat.util;
 
 import org.apache.commons.io.FilenameUtils;
 import org.apache.commons.lang3.StringUtils;
