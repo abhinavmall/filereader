@@ -1,4 +1,4 @@
-package com.assignment.dto;
+package com.assignment.egmat.dto;
 
 import com.univocity.parsers.annotations.EnumOptions;
 import com.univocity.parsers.annotations.Parsed;

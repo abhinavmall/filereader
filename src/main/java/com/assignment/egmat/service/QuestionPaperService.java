@@ -1,6 +1,6 @@
-package com.assignment.service;
+package com.assignment.egmat.service;
 
-import com.assignment.dto.Question;
+import com.assignment.egmat.dto.Question;
 
 import java.util.List;
 

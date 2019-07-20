@@ -1,4 +1,4 @@
-package com.assignment.dto.form;
+package com.assignment.egmat.dto.form;
 
 import org.springframework.web.multipart.MultipartFile;
 

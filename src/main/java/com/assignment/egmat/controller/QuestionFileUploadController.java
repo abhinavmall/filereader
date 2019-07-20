@@ -1,8 +1,8 @@
-package com.assignment.controller;
+package com.assignment.egmat.controller;
 
-import com.assignment.dto.form.UploadFileForm;
-import com.assignment.service.FileService;
-import com.assignment.util.Utilities;
+import com.assignment.egmat.dto.form.UploadFileForm;
+import com.assignment.egmat.service.FileService;
+import com.assignment.egmat.util.Utilities;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;

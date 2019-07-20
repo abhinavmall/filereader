@@ -1,4 +1,4 @@
-package com.assignment.service;
+package com.assignment.egmat.service;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
