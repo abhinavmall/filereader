@@ -20,6 +20,7 @@ import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 import javax.validation.Valid;
 import java.io.BufferedReader;
 import java.io.File;
+import java.io.IOException;
 import java.util.List;
 
 @Controller
@@ -60,7 +61,7 @@ public class QuestionFileUploadController {
                     UploadFileForm uploadFileForm,
             BindingResult bindingResult,
             Model model,
-            RedirectAttributes redirectAttributes) {
+            RedirectAttributes redirectAttributes) throws IOException {
         if (bindingResult.hasErrors()) {
             logger.error("No file uploaded");
             model.addAttribute("failure", "Invalid file");
