@@ -3,6 +3,7 @@ package com.assignment.egmat.dto;
 import com.univocity.parsers.annotations.EnumOptions;
 import com.univocity.parsers.annotations.Parsed;
 import com.univocity.parsers.annotations.Trim;
+import com.univocity.parsers.annotations.Validate;
 
 public class Question {
     public enum Tag {
@@ -37,15 +38,18 @@ public class Question {
 
     @Parsed(index = 0)
     @Trim
+    @Validate
     private String question;
 
     @Parsed(index = 1)
     @Trim
+    @Validate
     @EnumOptions(customElement = "difficultyLevel")
     private Difficulty difficulty;
 
     @Parsed(index = 2)
     @Trim
+    @Validate
     @EnumOptions(customElement = "tagCode")
     private Tag tag;
 
