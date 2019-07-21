@@ -1,8 +1,9 @@
 package com.assignment.egmat.service;
 
-import java.io.File;
+import java.io.BufferedReader;
+import java.io.IOException;
 import java.util.List;
 
 public interface FileReaderService<T> {
-    public List<T> readAllLines(File file);
+    List<T> readBufferedResource(BufferedReader br) throws IOException;
 }

@@ -5,13 +5,13 @@ import com.univocity.parsers.annotations.Parsed;
 import com.univocity.parsers.annotations.Trim;
 
 public class Question {
-    enum Tag {
-        TAG1("tag1"),
-        TAG2("tag2"),
-        TAG3("tag3"),
-        TAG4("tag4"),
-        TAG5("tag5"),
-        TAG6("tag6");
+    public enum Tag {
+        TAG1("Tag1"),
+        TAG2("Tag2"),
+        TAG3("Tag3"),
+        TAG4("Tag4"),
+        TAG5("Tag5"),
+        TAG6("Tag6");
 
         public final String tagCode;
 
@@ -20,10 +20,10 @@ public class Question {
         }
     }
 
-    enum Difficulty {
-        HARD("hard"),
-        MEDIUM("medium"),
-        EASY("easy");
+    public enum Difficulty {
+        HARD("HARD"),
+        MEDIUM("MEDIUM"),
+        EASY("EASY");
 
         public final String difficultyLevel;
 
