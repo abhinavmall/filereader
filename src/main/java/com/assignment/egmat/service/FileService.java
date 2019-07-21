@@ -8,10 +8,7 @@ import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Service;
 import org.springframework.web.multipart.MultipartFile;
 
-import java.io.BufferedReader;
-import java.io.File;
-import java.io.FileOutputStream;
-import java.io.FileReader;
+import java.io.*;
 
 @Service
 public class FileService {
@@ -21,14 +18,14 @@ public class FileService {
                             FileService.class);
     @Autowired
     Utilities utilities;
-    @Value("${file.upload-dir}")
-    private String uploadDirectory;
 
     public File convertMultipartFileToFile(
-            MultipartFile multipartFile) {
-        File file = new File(uploadDirectory +
-                multipartFile.getOriginalFilename());
-
+            MultipartFile multipartFile) throws IOException {
+        //File file = new File(uploadDirectory +
+        //        multipartFile.getOriginalFilename());
+        File file = File.createTempFile(
+                multipartFile.getOriginalFilename(),
+                "");
         try (FileOutputStream fos = new FileOutputStream(file)) {
             fos.write(multipartFile.getBytes());
         } catch (Exception e) {
