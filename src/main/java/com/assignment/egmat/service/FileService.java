@@ -1,13 +1,17 @@
 package com.assignment.egmat.service;
 
+import com.assignment.egmat.util.Utilities;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Service;
 import org.springframework.web.multipart.MultipartFile;
 
+import java.io.BufferedReader;
 import java.io.File;
 import java.io.FileOutputStream;
+import java.io.FileReader;
 
 @Service
 public class FileService {
@@ -15,7 +19,8 @@ public class FileService {
             LoggerFactory
                     .getLogger(
                             FileService.class);
-
+    @Autowired
+    Utilities utilities;
     @Value("${file.upload-dir}")
     private String uploadDirectory;
 
@@ -26,13 +31,30 @@ public class FileService {
 
         try (FileOutputStream fos = new FileOutputStream(file)) {
             fos.write(multipartFile.getBytes());
-        }
-        catch (Exception e) {
+        } catch (Exception e) {
             logger.error("Exception occurred while converting multipart file " +
                     "to file", e);
             return null;
         }
 
         return file;
+    }
+
+    public BufferedReader getBufferedReader(File file) {
+        if (utilities.isEmpty(file)) {
+            logger.error("File can't be empty.");
+            return null;
+        }
+
+        BufferedReader br;
+
+        try {
+            br = new BufferedReader(new FileReader(file));
+        }
+        catch (Exception e) {
+            logger.error("Error opening uploaded file", e);
+            return null;
+        }
+        return br;
     }
 }
