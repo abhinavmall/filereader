@@ -6,29 +6,32 @@ import com.univocity.parsers.annotations.Trim;
 
 public class Question {
     public enum Tag {
-        TAG1("Tag1"),
-        TAG2("Tag2"),
-        TAG3("Tag3"),
-        TAG4("Tag4"),
-        TAG5("Tag5"),
-        TAG6("Tag6");
+        TAG1("Tag1", 0),
+        TAG2("Tag2", 1),
+        TAG3("Tag3", 2),
+        TAG4("Tag4", 3),
+        TAG5("Tag5", 4),
+        TAG6("Tag6", 5);
 
         public final String tagCode;
-
-        Tag(String tagCode) {
+        public final int tagIndex;
+        Tag(String tagCode, int tagIndex) {
             this.tagCode = tagCode;
+            this.tagIndex = tagIndex;
         }
     }
 
     public enum Difficulty {
-        HARD("HARD"),
-        MEDIUM("MEDIUM"),
-        EASY("EASY");
+        HARD("HARD", 0),
+        MEDIUM("MEDIUM", 1),
+        EASY("EASY", 2);
 
         public final String difficultyLevel;
+        public final int difficultyIndex;
 
-        Difficulty(String difficultyLevel) {
+        Difficulty(String difficultyLevel, int difficultyIndex) {
             this.difficultyLevel = difficultyLevel;
+            this.difficultyIndex = difficultyIndex;
         }
     }
 

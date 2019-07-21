@@ -4,6 +4,7 @@ import com.assignment.egmat.dto.Question;
 import com.assignment.egmat.dto.form.UploadFileForm;
 import com.assignment.egmat.service.FileService;
 import com.assignment.egmat.service.QuestionFileReaderService;
+import com.assignment.egmat.service.QuestionPaperService;
 import com.assignment.egmat.util.Utilities;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -40,6 +41,9 @@ public class QuestionFileUploadController {
 
     @Autowired
     QuestionFileReaderService fileReaderService;
+
+    @Autowired
+    QuestionPaperService questionPaperService;
 
     @GetMapping("/uploadquestionfile")
     public String getQuestionFileUploadPage(
@@ -102,7 +106,7 @@ public class QuestionFileUploadController {
         }
 
         // TODO: Count and populate redirect attributes
-        int count = 0;
+        int count = questionPaperService.getCountOfPossibleQuestionPaper(questions);
 
         redirectAttributes.addFlashAttribute("success",
                 "Total number of question papers possible = "
