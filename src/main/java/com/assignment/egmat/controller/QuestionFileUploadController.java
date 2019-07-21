@@ -1,7 +1,9 @@
 package com.assignment.egmat.controller;
 
+import com.assignment.egmat.dto.Question;
 import com.assignment.egmat.dto.form.UploadFileForm;
 import com.assignment.egmat.service.FileService;
+import com.assignment.egmat.service.QuestionFileReaderService;
 import com.assignment.egmat.util.Utilities;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -15,7 +17,9 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import javax.validation.Valid;
+import java.io.BufferedReader;
 import java.io.File;
+import java.util.List;
 
 @Controller
 public class QuestionFileUploadController {
@@ -33,6 +37,9 @@ public class QuestionFileUploadController {
 
     @Autowired
     FileService fileService;
+
+    @Autowired
+    QuestionFileReaderService fileReaderService;
 
     @GetMapping("/uploadquestionfile")
     public String getQuestionFileUploadPage(
@@ -72,6 +79,27 @@ public class QuestionFileUploadController {
         File file =
                 fileService.convertMultipartFileToFile(
                         uploadFileForm.getFile());
+
+        // Get BR
+        BufferedReader br = fileService.getBufferedReader(file);
+        if (utilities.isEmpty(br)) {
+            redirectAttributes.addFlashAttribute("failure",
+                    "Error parsing file");
+            return "redirect:/" + FILE_UPLOAD_PAGE;
+        }
+
+        // Parse and get questions from file
+        List<Question> questions;
+        try {
+            questions = fileReaderService
+                    .readBufferedResource(br);
+        }
+        catch (Exception e) {
+            logger.error("Error while parsing file", e);
+            redirectAttributes.addFlashAttribute("failure",
+                    "Error parsing file");
+            return "redirect:/" + FILE_UPLOAD_PAGE;
+        }
 
         // TODO: Count and populate redirect attributes
         int count = 0;
